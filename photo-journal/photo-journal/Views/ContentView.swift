@@ -30,7 +30,7 @@ struct ContentView: View {
             }
             .tabItem { Text("New") }.tag(2)
             NavigationView {
-                Text("past entries list") // change to image of app name?
+                EntryList() // change to image of app name?
                     .navigationTitle("Past Entries")
             }
             .tabItem { Text("Lookup") }.tag(3)
