@@ -7,38 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66E5FA4428907DF5007C6866 /* photo_journalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA4328907DF5007C6866 /* photo_journalApp.swift */; };
-		66E5FA4628907DF5007C6866 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA4528907DF5007C6866 /* ContentView.swift */; };
-		66E5FA4828907DF6007C6866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E5FA4728907DF6007C6866 /* Assets.xcassets */; };
-		66E5FA4B28907DF6007C6866 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E5FA4A28907DF6007C6866 /* Preview Assets.xcassets */; };
-		66E5FA4D28907DF6007C6866 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA4C28907DF6007C6866 /* Persistence.swift */; };
-		66E5FA5028907DF6007C6866 /* photo_journal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA4E28907DF6007C6866 /* photo_journal.xcdatamodeld */; };
-		66E5FA582890858D007C6866 /* EntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA572890858D007C6866 /* EntryList.swift */; };
-		66E5FA5A289087B6007C6866 /* EntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA59289087B6007C6866 /* EntryRow.swift */; };
-		66E5FA5C2890885A007C6866 /* SingleEntryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA5B2890885A007C6866 /* SingleEntryDetail.swift */; };
-		66E5FA6028908BDC007C6866 /* NewEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA5F28908BDC007C6866 /* NewEntry.swift */; };
-		66E5FA8228909E1B007C6866 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA8028909E1B007C6866 /* Entry+CoreDataClass.swift */; };
-		66E5FA8328909E1B007C6866 /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA8128909E1B007C6866 /* Entry+CoreDataProperties.swift */; };
+		66E5FA922890A765007C6866 /* photojournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA912890A765007C6866 /* photojournalApp.swift */; };
+		66E5FA942890A765007C6866 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA932890A765007C6866 /* ContentView.swift */; };
+		66E5FA962890A766007C6866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E5FA952890A766007C6866 /* Assets.xcassets */; };
+		66E5FA992890A766007C6866 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E5FA982890A766007C6866 /* Preview Assets.xcassets */; };
+		66E5FAAC28932BD3007C6866 /* photojournalModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAAA28932BD2007C6866 /* photojournalModels.xcdatamodeld */; };
+		66E5FAAE2893361C007C6866 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAAD2893361C007C6866 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		66E5FA4028907DF5007C6866 /* photo-journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photo-journal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66E5FA4328907DF5007C6866 /* photo_journalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photo_journalApp.swift; sourceTree = "<group>"; };
-		66E5FA4528907DF5007C6866 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		66E5FA4728907DF6007C6866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		66E5FA4A28907DF6007C6866 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		66E5FA4C28907DF6007C6866 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		66E5FA4F28907DF6007C6866 /* photo_journal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = photo_journal.xcdatamodel; sourceTree = "<group>"; };
-		66E5FA572890858D007C6866 /* EntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryList.swift; sourceTree = "<group>"; };
-		66E5FA59289087B6007C6866 /* EntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRow.swift; sourceTree = "<group>"; };
-		66E5FA5B2890885A007C6866 /* SingleEntryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEntryDetail.swift; sourceTree = "<group>"; };
-		66E5FA5F28908BDC007C6866 /* NewEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntry.swift; sourceTree = "<group>"; };
-		66E5FA8028909E1B007C6866 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		66E5FA8128909E1B007C6866 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		66E5FA8E2890A765007C6866 /* photojournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photojournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66E5FA912890A765007C6866 /* photojournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photojournalApp.swift; sourceTree = "<group>"; };
+		66E5FA932890A765007C6866 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		66E5FA952890A766007C6866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66E5FA982890A766007C6866 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		66E5FAAB28932BD3007C6866 /* photojournalModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = photojournalModels.xcdatamodel; sourceTree = "<group>"; };
+		66E5FAAD2893361C007C6866 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		66E5FA3D28907DF5007C6866 /* Frameworks */ = {
+		66E5FA8B2890A765007C6866 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,101 +36,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		66E5FA3728907DF5007C6866 = {
+		66E5FA852890A765007C6866 = {
 			isa = PBXGroup;
 			children = (
-				66E5FA4228907DF5007C6866 /* photo-journal */,
-				66E5FA4128907DF5007C6866 /* Products */,
+				66E5FA902890A765007C6866 /* photojournal */,
+				66E5FA8F2890A765007C6866 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		66E5FA4128907DF5007C6866 /* Products */ = {
+		66E5FA8F2890A765007C6866 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66E5FA4028907DF5007C6866 /* photo-journal.app */,
+				66E5FA8E2890A765007C6866 /* photojournal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		66E5FA4228907DF5007C6866 /* photo-journal */ = {
+		66E5FA902890A765007C6866 /* photojournal */ = {
 			isa = PBXGroup;
 			children = (
-				66E5FA8428909E9C007C6866 /* Models */,
-				66E5FA4328907DF5007C6866 /* photo_journalApp.swift */,
-				66E5FA562890855C007C6866 /* Views */,
-				66E5FA4728907DF6007C6866 /* Assets.xcassets */,
-				66E5FA4C28907DF6007C6866 /* Persistence.swift */,
-				66E5FA4E28907DF6007C6866 /* photo_journal.xcdatamodeld */,
-				66E5FA4928907DF6007C6866 /* Preview Content */,
+				66E5FA912890A765007C6866 /* photojournalApp.swift */,
+				66E5FAAA28932BD2007C6866 /* photojournalModels.xcdatamodeld */,
+				66E5FAAD2893361C007C6866 /* DataController.swift */,
+				66E5FA932890A765007C6866 /* ContentView.swift */,
+				66E5FA952890A766007C6866 /* Assets.xcassets */,
+				66E5FA972890A766007C6866 /* Preview Content */,
 			);
-			path = "photo-journal";
+			path = photojournal;
 			sourceTree = "<group>";
 		};
-		66E5FA4928907DF6007C6866 /* Preview Content */ = {
+		66E5FA972890A766007C6866 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				66E5FA4A28907DF6007C6866 /* Preview Assets.xcassets */,
+				66E5FA982890A766007C6866 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		66E5FA562890855C007C6866 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				66E5FA4528907DF5007C6866 /* ContentView.swift */,
-				66E5FA5F28908BDC007C6866 /* NewEntry.swift */,
-				66E5FA572890858D007C6866 /* EntryList.swift */,
-				66E5FA59289087B6007C6866 /* EntryRow.swift */,
-				66E5FA5B2890885A007C6866 /* SingleEntryDetail.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		66E5FA8428909E9C007C6866 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				66E5FA8028909E1B007C6866 /* Entry+CoreDataClass.swift */,
-				66E5FA8128909E1B007C6866 /* Entry+CoreDataProperties.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		66E5FA3F28907DF5007C6866 /* photo-journal */ = {
+		66E5FA8D2890A765007C6866 /* photojournal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66E5FA5328907DF6007C6866 /* Build configuration list for PBXNativeTarget "photo-journal" */;
+			buildConfigurationList = 66E5FA9C2890A766007C6866 /* Build configuration list for PBXNativeTarget "photojournal" */;
 			buildPhases = (
-				66E5FA3C28907DF5007C6866 /* Sources */,
-				66E5FA3D28907DF5007C6866 /* Frameworks */,
-				66E5FA3E28907DF5007C6866 /* Resources */,
+				66E5FA8A2890A765007C6866 /* Sources */,
+				66E5FA8B2890A765007C6866 /* Frameworks */,
+				66E5FA8C2890A765007C6866 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "photo-journal";
-			productName = "photo-journal";
-			productReference = 66E5FA4028907DF5007C6866 /* photo-journal.app */;
+			name = photojournal;
+			productName = photojournal;
+			productReference = 66E5FA8E2890A765007C6866 /* photojournal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		66E5FA3828907DF5007C6866 /* Project object */ = {
+		66E5FA862890A765007C6866 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					66E5FA3F28907DF5007C6866 = {
+					66E5FA8D2890A765007C6866 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
-			buildConfigurationList = 66E5FA3B28907DF5007C6866 /* Build configuration list for PBXProject "photo-journal" */;
+			buildConfigurationList = 66E5FA892890A765007C6866 /* Build configuration list for PBXProject "photojournal" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -150,50 +116,44 @@
 				en,
 				Base,
 			);
-			mainGroup = 66E5FA3728907DF5007C6866;
-			productRefGroup = 66E5FA4128907DF5007C6866 /* Products */;
+			mainGroup = 66E5FA852890A765007C6866;
+			productRefGroup = 66E5FA8F2890A765007C6866 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66E5FA3F28907DF5007C6866 /* photo-journal */,
+				66E5FA8D2890A765007C6866 /* photojournal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		66E5FA3E28907DF5007C6866 /* Resources */ = {
+		66E5FA8C2890A765007C6866 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66E5FA4B28907DF6007C6866 /* Preview Assets.xcassets in Resources */,
-				66E5FA4828907DF6007C6866 /* Assets.xcassets in Resources */,
+				66E5FA992890A766007C6866 /* Preview Assets.xcassets in Resources */,
+				66E5FA962890A766007C6866 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		66E5FA3C28907DF5007C6866 /* Sources */ = {
+		66E5FA8A2890A765007C6866 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66E5FA4D28907DF6007C6866 /* Persistence.swift in Sources */,
-				66E5FA582890858D007C6866 /* EntryList.swift in Sources */,
-				66E5FA5C2890885A007C6866 /* SingleEntryDetail.swift in Sources */,
-				66E5FA4628907DF5007C6866 /* ContentView.swift in Sources */,
-				66E5FA8328909E1B007C6866 /* Entry+CoreDataProperties.swift in Sources */,
-				66E5FA8228909E1B007C6866 /* Entry+CoreDataClass.swift in Sources */,
-				66E5FA5028907DF6007C6866 /* photo_journal.xcdatamodeld in Sources */,
-				66E5FA6028908BDC007C6866 /* NewEntry.swift in Sources */,
-				66E5FA4428907DF5007C6866 /* photo_journalApp.swift in Sources */,
-				66E5FA5A289087B6007C6866 /* EntryRow.swift in Sources */,
+				66E5FAAC28932BD3007C6866 /* photojournalModels.xcdatamodeld in Sources */,
+				66E5FAAE2893361C007C6866 /* DataController.swift in Sources */,
+				66E5FA942890A765007C6866 /* ContentView.swift in Sources */,
+				66E5FA922890A765007C6866 /* photojournalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		66E5FA5128907DF6007C6866 /* Debug */ = {
+		66E5FA9A2890A766007C6866 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -253,7 +213,7 @@
 			};
 			name = Debug;
 		};
-		66E5FA5228907DF6007C6866 /* Release */ = {
+		66E5FA9B2890A766007C6866 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -307,14 +267,14 @@
 			};
 			name = Release;
 		};
-		66E5FA5428907DF6007C6866 /* Debug */ = {
+		66E5FA9D2890A766007C6866 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"photo-journal/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"photojournal/Preview Content\"";
 				DEVELOPMENT_TEAM = UJ2HZQBMCN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -328,7 +288,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.megankorling.photo-journal";
+				PRODUCT_BUNDLE_IDENTIFIER = com.megankorling.photojournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -336,14 +296,14 @@
 			};
 			name = Debug;
 		};
-		66E5FA5528907DF6007C6866 /* Release */ = {
+		66E5FA9E2890A766007C6866 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"photo-journal/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"photojournal/Preview Content\"";
 				DEVELOPMENT_TEAM = UJ2HZQBMCN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -357,7 +317,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.megankorling.photo-journal";
+				PRODUCT_BUNDLE_IDENTIFIER = com.megankorling.photojournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -368,20 +328,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66E5FA3B28907DF5007C6866 /* Build configuration list for PBXProject "photo-journal" */ = {
+		66E5FA892890A765007C6866 /* Build configuration list for PBXProject "photojournal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66E5FA5128907DF6007C6866 /* Debug */,
-				66E5FA5228907DF6007C6866 /* Release */,
+				66E5FA9A2890A766007C6866 /* Debug */,
+				66E5FA9B2890A766007C6866 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66E5FA5328907DF6007C6866 /* Build configuration list for PBXNativeTarget "photo-journal" */ = {
+		66E5FA9C2890A766007C6866 /* Build configuration list for PBXNativeTarget "photojournal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66E5FA5428907DF6007C6866 /* Debug */,
-				66E5FA5528907DF6007C6866 /* Release */,
+				66E5FA9D2890A766007C6866 /* Debug */,
+				66E5FA9E2890A766007C6866 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -389,17 +349,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		66E5FA4E28907DF6007C6866 /* photo_journal.xcdatamodeld */ = {
+		66E5FAAA28932BD2007C6866 /* photojournalModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				66E5FA4F28907DF6007C6866 /* photo_journal.xcdatamodel */,
+				66E5FAAB28932BD3007C6866 /* photojournalModels.xcdatamodel */,
 			);
-			currentVersion = 66E5FA4F28907DF6007C6866 /* photo_journal.xcdatamodel */;
-			path = photo_journal.xcdatamodeld;
+			currentVersion = 66E5FAAB28932BD3007C6866 /* photojournalModels.xcdatamodel */;
+			path = photojournalModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 66E5FA3828907DF5007C6866 /* Project object */;
+	rootObject = 66E5FA862890A765007C6866 /* Project object */;
 }
