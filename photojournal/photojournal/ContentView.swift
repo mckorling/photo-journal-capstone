@@ -24,7 +24,7 @@ struct ContentView: View {
             }
             .tabItem { Image(systemName: "house.circle.fill") }.tag(1)
             NavigationView {
-                Text("New Entry View Goes Here")
+                AddEntryView()
                     .navigationTitle("New Journal Entry")
             }
             .tabItem { Image(systemName: "plus.square.fill") }.tag(2)
