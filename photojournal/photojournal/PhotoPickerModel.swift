@@ -5,6 +5,7 @@
 //  Created by Megan Korling on 7/28/22.
 //
 
+// to help handle and save data
 import SwiftUI
 import Photos
 
@@ -58,13 +59,10 @@ class PickedMediaItems: ObservableObject {
     // also is datasource for List view in ItemsView
     
     @Published var items = [PhotoPickerModel]()
- 
     // items is an array of PhotoPickerModel objects.
     // when something is added or removed, ItemsView will be notified. The entire view will get rerendered.
     
     func append(item: PhotoPickerModel) {
         items.append(item)
-        
     }
 }
-

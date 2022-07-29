@@ -17,10 +17,19 @@ struct AddEntryView: View {
     @State private var photosByteData = [Data]()
     @State private var entryText = ""
     
+    @State private var showSheet = false
     @ObservedObject var mediaItems = PickedMediaItems()
     // PickedMediaItems is a class in PhotoPickerModel
     // mediaItems is an instance of PickedMediaItems class
     // property wrapper ObservedObject means the view can observe and react to changes that happpen in the items array that uses the property wrapper @Published in the PickedMediaItems class.
+    func convertImageToBytes(items: [PhotoPickerModel]) -> [Data] {
+        var convertedPhotosToBytes = [Data]()
+        items.forEach({ (image) in
+            let imageBytes = image.photo?.jpegData(compressionQuality: 1.0)
+            convertedPhotosToBytes.append(imageBytes!)
+        })
+        return convertedPhotosToBytes
+    }
     
     
     var body: some View {
@@ -29,7 +38,9 @@ struct AddEntryView: View {
                 Section {
                     TextField("Title for new entry", text: $title)
                     TextField("Location for new entry", text: $location)
-                    DatePicker("Choose date for new entry", selection: $date)
+                }
+                Section {
+                    DatePicker("Choose date for new entry", selection: $date, in: ...Date())
                         .datePickerStyle(GraphicalDatePickerStyle())
                 }
                 Section {
@@ -39,8 +50,17 @@ struct AddEntryView: View {
                 }
                 Section {
                     
-                    Button("Select Photos") {
-                        // insert photo picker
+                    Button(action: {
+                        showSheet = true
+                    }, label: {
+                        Text("Select Photos")
+                    })
+                    List(mediaItems.items, id: \.id) { item in
+                        Image(uiImage: item.photo ?? UIImage())
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }.onAppear {
+                        photosByteData = convertImageToBytes(items: mediaItems.items)
                     }
                 }
                 Section {
@@ -49,8 +69,14 @@ struct AddEntryView: View {
                     }
                 }
             }
-        }
+        }.sheet(isPresented: $showSheet, content: {
+            PhotoPicker(mediaItems: mediaItems) { didSelectItems in
+                showSheet = false
+                
+            }
+        })
     }
+    // outside of view
 }
 
 struct AddEntryView_Previews: PreviewProvider {
