@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
     // make a new fetch request with no sorting, put it into entries that has type of FetchedResults<Entry>
-    // then we can use it like an array
+    // then we can use it like an arrayA
     // some properties of Entry are optional
     // when unpacking them, entry.title ?? "title" so that by default there is a string "title" if no title is entered.
     
@@ -29,7 +29,7 @@ struct ContentView: View {
             }
             .tabItem { Image(systemName: "plus.square.fill") }.tag(2)
             NavigationView {
-                Text("List View of Entries Goes Here")
+                EntryListView()
                     .navigationTitle("Past Entries")
             }
             .tabItem { Image(systemName: "magazine.fill") }.tag(3)

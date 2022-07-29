@@ -58,6 +58,8 @@ class PickedMediaItems: ObservableObject {
     // will store media items once extraceted from picker results
     // also is datasource for List view in ItemsView
     
+    // MARK: Or can I get length of items and if it's too long, don't append?
+    
     @Published var items = [PhotoPickerModel]()
     // items is an array of PhotoPickerModel objects.
     // when something is added or removed, ItemsView will be notified. The entire view will get rerendered.

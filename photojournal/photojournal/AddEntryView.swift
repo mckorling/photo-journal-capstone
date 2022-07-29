@@ -59,13 +59,24 @@ struct AddEntryView: View {
                         Image(uiImage: item.photo ?? UIImage())
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                    }.onAppear {
-                        photosByteData = convertImageToBytes(items: mediaItems.items)
                     }
+//                    .onAppear {
+//
+//                    }
                 }
                 Section {
                     Button("Save") {
-                        // add the book
+                        // !!!Save Entry to Core Data!!!!
+                        // OR!!! in action for button here, i can convert the photos?? instead of .onAppear?
+                        let newEntry = Entry(context: moc)
+                        newEntry.id = UUID()
+                        newEntry.title = title
+                        newEntry.location = location
+                        newEntry.date = date
+                        newEntry.entryText = entryText
+                        photosByteData = convertImageToBytes(items: mediaItems.items)
+                        newEntry.photosByteData = photosByteData
+                        try? moc.save()
                     }
                 }
             }

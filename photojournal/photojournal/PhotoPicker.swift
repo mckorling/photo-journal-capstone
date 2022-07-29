@@ -22,6 +22,8 @@ struct PhotoPicker: UIViewControllerRepresentable {
     // (above) it is not initialzed here like in ItemsView!
     // will pass the mediaItems object from ItemsView upon initialization of the PhotoPicker object
     
+    // MARK: Can i add a property here that is observedstate? or something like that. Set it at what I want my max to be and somehow talk to AddEntryView? OR have two variables, one that tracks photos added to quit when it matches the selection limit?
+    
     var didFinishPicking: (_ didSelectItems: Bool) -> Void // actionhandler to be called in delegate method, then will be implemented as a closure in SwiftUI view. This helps us know when the user is done, because how long that takes depends on the user
     
     // every UIViewCR type must do 3 things
@@ -95,6 +97,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
             // use the itemProvider to get the photo
             // CONVERT PHOTOS HERE TO SAVE???? because results is an array of images
             // var saveImageData: [Data]
+            // MARK: Or can I get length of results here and only convert the ones needed to not go over max?
             for result in results {
                 let itemProvider = result.itemProvider
                 self.getPhoto(from: itemProvider)

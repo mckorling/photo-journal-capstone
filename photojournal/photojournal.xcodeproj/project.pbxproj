@@ -16,6 +16,9 @@
 		66E5FAB128933FA9007C6866 /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB028933FA9007C6866 /* AddEntryView.swift */; };
 		66E5FAB3289344B3007C6866 /* PhotoPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB2289344B3007C6866 /* PhotoPickerModel.swift */; };
 		66E5FAB5289344EB007C6866 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB4289344EB007C6866 /* PhotoPicker.swift */; };
+		66E5FAB7289439CA007C6866 /* EntryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB6289439CA007C6866 /* EntryListView.swift */; };
+		66E5FAB928943F17007C6866 /* SingleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB828943F17007C6866 /* SingleEntryView.swift */; };
+		66E5FABB28943F29007C6866 /* EntryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FABA28943F29007C6866 /* EntryRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		66E5FAB028933FA9007C6866 /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 		66E5FAB2289344B3007C6866 /* PhotoPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerModel.swift; sourceTree = "<group>"; };
 		66E5FAB4289344EB007C6866 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		66E5FAB6289439CA007C6866 /* EntryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryListView.swift; sourceTree = "<group>"; };
+		66E5FAB828943F17007C6866 /* SingleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEntryView.swift; sourceTree = "<group>"; };
+		66E5FABA28943F29007C6866 /* EntryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,9 @@
 				66E5FAB2289344B3007C6866 /* PhotoPickerModel.swift */,
 				66E5FAB4289344EB007C6866 /* PhotoPicker.swift */,
 				66E5FAB028933FA9007C6866 /* AddEntryView.swift */,
+				66E5FAB6289439CA007C6866 /* EntryListView.swift */,
+				66E5FAB828943F17007C6866 /* SingleEntryView.swift */,
+				66E5FABA28943F29007C6866 /* EntryRowView.swift */,
 				66E5FAAD2893361C007C6866 /* DataController.swift */,
 				66E5FAAF28933EB1007C6866 /* Views */,
 				66E5FA952890A766007C6866 /* Assets.xcassets */,
@@ -161,12 +170,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				66E5FAB5289344EB007C6866 /* PhotoPicker.swift in Sources */,
+				66E5FAB928943F17007C6866 /* SingleEntryView.swift in Sources */,
 				66E5FAB3289344B3007C6866 /* PhotoPickerModel.swift in Sources */,
 				66E5FAAC28932BD3007C6866 /* photojournalModels.xcdatamodeld in Sources */,
 				66E5FAB128933FA9007C6866 /* AddEntryView.swift in Sources */,
 				66E5FAAE2893361C007C6866 /* DataController.swift in Sources */,
+				66E5FABB28943F29007C6866 /* EntryRowView.swift in Sources */,
 				66E5FA942890A765007C6866 /* ContentView.swift in Sources */,
 				66E5FA922890A765007C6866 /* photojournalApp.swift in Sources */,
+				66E5FAB7289439CA007C6866 /* EntryListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
