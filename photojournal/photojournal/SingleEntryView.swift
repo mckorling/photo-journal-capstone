@@ -16,17 +16,24 @@ struct SingleEntryView: View {
         ScrollView {
             VStack {
                 Text(entry.title ?? "Title")
-                Spacer()
                 Text(entry.location ?? "Location")
                 Spacer()
                // Text(entry.date ?? "Date")
                 
-                // force unwrapped. change to default?
-                List(entry.photosByteData!, id: \.self) { imageJpeg in
-                    //UIImage(data: image)
-                    Image(uiImage: UIImage(data: imageJpeg)!) // force unwrap. change to default image?
-                }
-                Text(entry.entryText ?? "No journal text was entered")
+                Image(uiImage: UIImage(data: entry.image1!) ?? UIImage()) //force unwrapped two different things
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Spacer()
+                Image(uiImage: UIImage(data: entry.image2!) ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Spacer()
+                Image(uiImage: UIImage(data: entry.image3!) ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Spacer()
+                Text(entry.entryText ?? "Default text")
+                
                 
             }
         }

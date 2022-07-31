@@ -14,7 +14,9 @@ struct AddEntryView: View {
     @State private var title = ""
     @State private var location = ""
     @State private var date = Date()
-    @State private var photosByteData = [Data]()
+    @State private var image1 = Data()
+    @State private var image2 = Data()
+    @State private var image3 = Data()
     @State private var entryText = ""
     
     @State private var showSheet = false
@@ -22,13 +24,24 @@ struct AddEntryView: View {
     // PickedMediaItems is a class in PhotoPickerModel
     // mediaItems is an instance of PickedMediaItems class
     // property wrapper ObservedObject means the view can observe and react to changes that happpen in the items array that uses the property wrapper @Published in the PickedMediaItems class.
-    func convertImageToBytes(items: [PhotoPickerModel]) -> [Data] {
-        var convertedPhotosToBytes = [Data]()
-        items.forEach({ (image) in
-            let imageBytes = image.photo?.jpegData(compressionQuality: 1.0)
-            convertedPhotosToBytes.append(imageBytes!)
-        })
-        return convertedPhotosToBytes
+
+    
+
+   
+    func setImages(entry: Entry) {
+        if mediaItems.items.count == 3 {
+            entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
+            entry.image2 = mediaItems.items[1].photo?.jpegData(compressionQuality: 1.0)
+            entry.image3 = mediaItems.items[2].photo?.jpegData(compressionQuality: 1.0)
+        } else if mediaItems.items.count == 2 {
+            entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
+            entry.image2 = mediaItems.items[1].photo?.jpegData(compressionQuality: 1.0)
+            entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+        } else if mediaItems.items.count == 1 {
+            entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
+            entry.image2 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+            entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+        }
     }
     
     
@@ -55,27 +68,25 @@ struct AddEntryView: View {
                     }, label: {
                         Text("Select Photos")
                     })
+                    // this is from the photopickermodel
                     List(mediaItems.items, id: \.id) { item in
                         Image(uiImage: item.photo ?? UIImage())
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }
-//                    .onAppear {
-//
-//                    }
                 }
                 Section {
                     Button("Save") {
-                        // !!!Save Entry to Core Data!!!!
-                        // OR!!! in action for button here, i can convert the photos?? instead of .onAppear?
                         let newEntry = Entry(context: moc)
                         newEntry.id = UUID()
                         newEntry.title = title
                         newEntry.location = location
                         newEntry.date = date
                         newEntry.entryText = entryText
-                        photosByteData = convertImageToBytes(items: mediaItems.items)
-                        newEntry.photosByteData = photosByteData
+                        setImages(entry: newEntry)
+//                        newEntry.image1 = mediaItems.items[0].photo!.jpegData(compressionQuality: 1.0)
+//                        newEntry.image2 = mediaItems.items[1].photo!.jpegData(compressionQuality: 1.0)
+//                        newEntry.image3 = mediaItems.items[2].photo!.jpegData(compressionQuality: 1.0)
                         try? moc.save()
                     }
                 }
