@@ -41,6 +41,10 @@ struct AddEntryView: View {
             entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
             entry.image2 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
             entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+        } else {
+            entry.image1 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+            entry.image2 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+            entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
         }
     }
     
