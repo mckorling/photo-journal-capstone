@@ -19,6 +19,7 @@
 		66E5FAB7289439CA007C6866 /* EntryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB6289439CA007C6866 /* EntryListView.swift */; };
 		66E5FAB928943F17007C6866 /* SingleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAB828943F17007C6866 /* SingleEntryView.swift */; };
 		66E5FABB28943F29007C6866 /* EntryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FABA28943F29007C6866 /* EntryRowView.swift */; };
+		66E5FAF028984EAF007C6866 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FAEF28984EAF007C6866 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		66E5FAB6289439CA007C6866 /* EntryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryListView.swift; sourceTree = "<group>"; };
 		66E5FAB828943F17007C6866 /* SingleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEntryView.swift; sourceTree = "<group>"; };
 		66E5FABA28943F29007C6866 /* EntryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRowView.swift; sourceTree = "<group>"; };
+		66E5FAEF28984EAF007C6866 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				66E5FA912890A765007C6866 /* photojournalApp.swift */,
 				66E5FAAA28932BD2007C6866 /* photojournalModels.xcdatamodeld */,
 				66E5FA932890A765007C6866 /* ContentView.swift */,
+				66E5FAEF28984EAF007C6866 /* HomeView.swift */,
 				66E5FAB2289344B3007C6866 /* PhotoPickerModel.swift */,
 				66E5FAB4289344EB007C6866 /* PhotoPicker.swift */,
 				66E5FAB028933FA9007C6866 /* AddEntryView.swift */,
@@ -174,6 +177,7 @@
 				66E5FAB3289344B3007C6866 /* PhotoPickerModel.swift in Sources */,
 				66E5FAAC28932BD3007C6866 /* photojournalModels.xcdatamodeld in Sources */,
 				66E5FAB128933FA9007C6866 /* AddEntryView.swift in Sources */,
+				66E5FAF028984EAF007C6866 /* HomeView.swift in Sources */,
 				66E5FAAE2893361C007C6866 /* DataController.swift in Sources */,
 				66E5FABB28943F29007C6866 /* EntryRowView.swift in Sources */,
 				66E5FA942890A765007C6866 /* ContentView.swift in Sources */,

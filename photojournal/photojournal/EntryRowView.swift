@@ -14,7 +14,7 @@ struct EntryRowView: View {
         HStack {
             VStack {
                 Text(entry.location ?? "Location")
-                //Text(entry.date)
+                Text(entry.date!, style: .date)
             }
             Text(entry.title ?? "Title")
         }

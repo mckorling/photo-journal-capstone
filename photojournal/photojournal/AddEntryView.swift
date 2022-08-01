@@ -50,7 +50,14 @@ struct AddEntryView: View {
     
     
     var body: some View {
-        NavigationView {
+        let gradient = LinearGradient(colors: [.mint, .pink, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
+        
+        
+        ZStack {
+            gradient
+                .opacity(0.30)
+                .ignoresSafeArea()
+        
             Form {
                 Section {
                     TextField("Title for new entry", text: $title)
@@ -95,15 +102,17 @@ struct AddEntryView: View {
                     }
                 }
             }
+            .onAppear{
+                UITableView.appearance().backgroundColor = .clear
+            }
         }.sheet(isPresented: $showSheet, content: {
             PhotoPicker(mediaItems: mediaItems) { didSelectItems in
                 showSheet = false
-                
             }
-        })
+        }) // end of sheet
     }
     // outside of view
-}
+} // end of struct
 
 struct AddEntryView_Previews: PreviewProvider {
     static var previews: some View {

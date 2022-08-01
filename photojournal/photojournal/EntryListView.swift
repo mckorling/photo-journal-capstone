@@ -12,7 +12,13 @@ struct EntryListView: View {
     @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
     
     var body: some View {
-        NavigationView {
+        let gradient = LinearGradient(colors: [.mint, .pink, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
+        
+        ZStack {
+            gradient
+                .opacity(0.30)
+                .ignoresSafeArea()
+            
             List(entries) { entry in
                 NavigationLink {
                     SingleEntryView(entry: entry)

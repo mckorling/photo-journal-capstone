@@ -17,11 +17,11 @@ struct ContentView: View {
     // when unpacking them, entry.title ?? "title" so that by default there is a string "title" if no title is entered.
     
     var body: some View {
-        
+        // let gradient = LinearGradient(colors: [.pink, .mint], startPoint: .topLeading, endPoint: .bottomTrailing)
         TabView {
             NavigationView {
-                Text("Name of App")
-                    .navigationTitle("Home")
+                HomeView()
+                .navigationTitle("Home")
             }
             .tabItem { Image(systemName: "house.circle.fill") }.tag(1)
             NavigationView {
