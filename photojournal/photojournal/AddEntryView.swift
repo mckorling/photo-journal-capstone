@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddEntryView: View {
     @Environment(\.managedObjectContext) var moc
+    //@Environment(\.dismiss) var dismiss // used to make form disappear
     // use @State properties to store all data to make a book
     // id will get created dynamically
     @State private var title = ""
@@ -48,6 +49,15 @@ struct AddEntryView: View {
         }
     }
     
+    func resetFields() {
+        self.title = ""
+        self.location = ""
+        self.date = Date()
+        self.image3 = Data()
+        self.image2 = Data()
+        self.image1 = Data()
+        self.entryText = ""
+    }
     
     var body: some View {
         let gradient = LinearGradient(colors: [.mint, .pink, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -57,53 +67,60 @@ struct AddEntryView: View {
             gradient
                 .opacity(0.30)
                 .ignoresSafeArea()
-        
-            Form {
-                Section {
-                    TextField("Title for new entry", text: $title)
-                    TextField("Location for new entry", text: $location)
-                }
-                Section {
-                    DatePicker("Choose date for new entry", selection: $date, in: ...Date())
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                }
-                Section {
-                    TextEditor(text: $entryText)
-                } header: {
-                    Text("What did you do on this day?")
-                }
-                Section {
-                    
-                    Button(action: {
-                        showSheet = true
-                    }, label: {
-                        Text("Select Photos")
-                    })
-                    // this is from the photopickermodel
-                    List(mediaItems.items, id: \.id) { item in
-                        Image(uiImage: item.photo ?? UIImage())
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+            VStack {
+                Form {
+                    Section {
+                        TextField("Title for new entry", text: $title)
+                        TextField("Location for new entry", text: $location)
+                    }
+                    Section {
+                        DatePicker("Choose date for new entry", selection: $date, in: ...Date())
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                    }
+                    Section {
+                        TextEditor(text: $entryText)
+                    } header: {
+                        Text("What did you do on this day?")
+                    }
+                    Section {
+                        
+                        Button(action: {
+                            showSheet = true
+                        }, label: {
+                            Text("Select Photos")
+                        })
+                        // this is from the photopickermodel
+                        List(mediaItems.items, id: \.id) { item in
+                            Image(uiImage: item.photo ?? UIImage())
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                    }
+                    Section {
+                        Button(action: {
+                            let newEntry = Entry(context: moc)
+                            newEntry.id = UUID()
+                            newEntry.title = title
+                            newEntry.location = location
+                            newEntry.date = date
+                            newEntry.entryText = entryText
+                            setImages(entry: newEntry)
+    //                        newEntry.image1 = mediaItems.items[0].photo!.jpegData(compressionQuality: 1.0)
+    //                        newEntry.image2 = mediaItems.items[1].photo!.jpegData(compressionQuality: 1.0)
+    //                        newEntry.image3 = mediaItems.items[2].photo!.jpegData(compressionQuality: 1.0)
+                            try? moc.save()
+                            //dismiss()
+                            resetFields()
+                            
+                            
+                        }) {
+                            Text("Save")
+                        }
                     }
                 }
-                Section {
-                    Button("Save") {
-                        let newEntry = Entry(context: moc)
-                        newEntry.id = UUID()
-                        newEntry.title = title
-                        newEntry.location = location
-                        newEntry.date = date
-                        newEntry.entryText = entryText
-                        setImages(entry: newEntry)
-//                        newEntry.image1 = mediaItems.items[0].photo!.jpegData(compressionQuality: 1.0)
-//                        newEntry.image2 = mediaItems.items[1].photo!.jpegData(compressionQuality: 1.0)
-//                        newEntry.image3 = mediaItems.items[2].photo!.jpegData(compressionQuality: 1.0)
-                        try? moc.save()
-                    }
+                .onAppear{
+                    UITableView.appearance().backgroundColor = .clear
                 }
-            }
-            .onAppear{
-                UITableView.appearance().backgroundColor = .clear
             }
         }.sheet(isPresented: $showSheet, content: {
             PhotoPicker(mediaItems: mediaItems) { didSelectItems in
