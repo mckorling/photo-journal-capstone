@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EntryListView: View {
   //  @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var entries: FetchedResults<Entry>
     
     var body: some View {
         let gradient = LinearGradient(colors: [.mint, .pink, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)

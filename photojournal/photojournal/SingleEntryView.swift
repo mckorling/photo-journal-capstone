@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SingleEntryView: View {
     var entry: Entry
@@ -26,7 +27,7 @@ struct SingleEntryView: View {
                         .padding(.bottom, 5.0)
                     Text("\(entry.location ?? "Location"), \(entry.date!, style: .date)")
                         .padding(.bottom, 15.0)
-                    Image(uiImage: UIImage(data: entry.image1!) ?? UIImage()) //force unwrapped two different things
+                    Image(uiImage: UIImage(data: entry.image1!) ?? UIImage())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(.all, 7.0)
@@ -51,8 +52,18 @@ struct SingleEntryView: View {
 }
 
 //struct SingleEntryView_Previews: PreviewProvider {
+//    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 //
 //    static var previews: some View {
-//        SingleEntryView()
+//        let entry = Entry(context: moc)
+//        entry.title = "Preview title"
+//        entry.location = "Seattle"
+//        entry.date = Date()
+//        entry.entryText = "this is the day I did stuff"
+//
+//        return ZStack {
+//            SingleEntryView(entry: entry)
+//        }
+//      //  return SingleEntryView(entry: entry)
 //    }
 //}

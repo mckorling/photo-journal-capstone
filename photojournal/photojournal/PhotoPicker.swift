@@ -35,7 +35,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
         // when it's initialized (PHPVC) the configuration must be provided (given as a PHPickerConfiguration object)
         var config = PHPickerConfiguration()
         config.filter = .images // can change this to include videos too
-        config.selectionLimit = 4 // can change this to more (0 = unlimited) have to adjust delegate method
+        config.selectionLimit = 3 // can change this to more (0 = unlimited) have to adjust delegate method
         config.preferredAssetRepresentationMode = .current // helps lessen import time?
         
         // configuration object is ready
