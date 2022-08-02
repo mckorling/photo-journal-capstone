@@ -23,17 +23,26 @@ struct ContentView: View {
                 HomeView()
                 .navigationTitle("Home")
             }
-            .tabItem { Image(systemName: "house.circle.fill") }.tag(1)
+            .tabItem {
+                Image(systemName: "house.circle.fill")
+                Text("Home")
+            }.tag(1)
             NavigationView {
                 AddEntryView()
                     .navigationTitle("New Journal Entry")
             }
-            .tabItem { Image(systemName: "plus.square.fill") }.tag(2)
+            .tabItem {
+                Image(systemName: "plus.square.fill")
+                Text("New")
+            }.tag(2)
             NavigationView {
                 EntryListView()
                     .navigationTitle("Past Entries")
             }
-            .tabItem { Image(systemName: "magazine.fill") }.tag(3)
+            .tabItem {
+                Image(systemName: "magazine.fill")
+                Text("Lookup")
+            }.tag(3)
         }
     }
 }

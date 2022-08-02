@@ -12,11 +12,15 @@ struct EntryRowView: View {
     
     var body: some View {
         HStack {
-            VStack {
+            VStack (alignment: .leading) {
                 Text(entry.location ?? "Location")
                 Text(entry.date!, style: .date)
             }
+            .padding(.trailing, 5.0)
             Text(entry.title ?? "Title")
+                .fontWeight(.bold)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                
         }
     }
 }

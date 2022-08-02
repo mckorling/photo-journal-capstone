@@ -20,21 +20,30 @@ struct SingleEntryView: View {
             ScrollView {
                 VStack {
                     Text(entry.title ?? "Title")
-                    Text(entry.location ?? "Location")
-                    Text(entry.date!, style: .date)
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .multilineTextAlignment(.leading)
+                        .padding(.bottom, 5.0)
+                    Text("\(entry.location ?? "Location"), \(entry.date!, style: .date)")
+                        .padding(.bottom, 15.0)
                     Image(uiImage: UIImage(data: entry.image1!) ?? UIImage()) //force unwrapped two different things
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .padding(.all, 7.0)
+                       // .cornerRadius(8)
                     Spacer()
                     Image(uiImage: UIImage(data: entry.image2!) ?? UIImage())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .padding(.all, 7.0)
                     Spacer()
                     Image(uiImage: UIImage(data: entry.image3!) ?? UIImage())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    Spacer()
+                        .padding(.all, 7.0)
                     Text(entry.entryText ?? "Default text")
+                        .lineSpacing(10)
+                        .padding(6)
                 }
             }
         }
@@ -42,6 +51,7 @@ struct SingleEntryView: View {
 }
 
 //struct SingleEntryView_Previews: PreviewProvider {
+//
 //    static var previews: some View {
 //        SingleEntryView()
 //    }

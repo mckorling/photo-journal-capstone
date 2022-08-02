@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EntryListView: View {
-    @Environment(\.managedObjectContext) var moc
+  //  @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
     
     var body: some View {

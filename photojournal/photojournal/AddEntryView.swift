@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AddEntryView: View {
     @Environment(\.managedObjectContext) var moc
-    //@Environment(\.dismiss) var dismiss // used to make form disappear
-    // use @State properties to store all data to make a book
+    
+    // use @State properties to store all data to make an entry (all model properties)
     // id will get created dynamically
     @State private var title = ""
     @State private var location = ""
@@ -20,6 +20,7 @@ struct AddEntryView: View {
     @State private var image3 = Data()
     @State private var entryText = ""
     
+    @State private var saveButtonSelected = false
     @State private var showSheet = false
     @ObservedObject var mediaItems = PickedMediaItems()
     // PickedMediaItems is a class in PhotoPickerModel
@@ -57,6 +58,7 @@ struct AddEntryView: View {
         self.image2 = Data()
         self.image1 = Data()
         self.entryText = ""
+        mediaItems.items.removeAll()
     }
     
     var body: some View {
@@ -67,14 +69,15 @@ struct AddEntryView: View {
             gradient
                 .opacity(0.30)
                 .ignoresSafeArea()
+       //     NavigationView {
             VStack {
                 Form {
-                    Section {
-                        TextField("Title for new entry", text: $title)
-                        TextField("Location for new entry", text: $location)
+                    Section(header: Text("Start a new journal entry")) {
+                        TextField("Title", text: $title)
+                        TextField("Location", text: $location)
                     }
-                    Section {
-                        DatePicker("Choose date for new entry", selection: $date, in: ...Date())
+                    Section(header: Text("Select the date")) {
+                        DatePicker("Select date", selection: $date, in: ...Date())
                             .datePickerStyle(GraphicalDatePickerStyle())
                     }
                     Section {
@@ -82,7 +85,7 @@ struct AddEntryView: View {
                     } header: {
                         Text("What did you do on this day?")
                     }
-                    Section {
+                    Section (footer: Text("Up to 3 photos allowed")){
                         
                         Button(action: {
                             showSheet = true
@@ -94,9 +97,11 @@ struct AddEntryView: View {
                             Image(uiImage: item.photo ?? UIImage())
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
+                        
                         }
                     }
                     Section {
+                        
                         Button(action: {
                             let newEntry = Entry(context: moc)
                             newEntry.id = UUID()
@@ -108,20 +113,27 @@ struct AddEntryView: View {
     //                        newEntry.image1 = mediaItems.items[0].photo!.jpegData(compressionQuality: 1.0)
     //                        newEntry.image2 = mediaItems.items[1].photo!.jpegData(compressionQuality: 1.0)
     //                        newEntry.image3 = mediaItems.items[2].photo!.jpegData(compressionQuality: 1.0)
+                            
+                            // managed object context to save itself, writes changes to persistant store.
+                            // a throwing function call
+                            // use try? in case it fails, not catching errors
                             try? moc.save()
-                            //dismiss()
+                            // clear out form, should be able to select photos from scratch
                             resetFields()
-                            
-                            
-                        }) {
+                            saveButtonSelected = true
+                        }) { // button label
                             Text("Save")
-                        }
-                    }
+                        } // end of button label
+                    } //end of button section
+                    
+                    
                 }
                 .onAppear{
                     UITableView.appearance().backgroundColor = .clear
                 }
             }
+        //    }// end of nav view
+            
         }.sheet(isPresented: $showSheet, content: {
             PhotoPicker(mediaItems: mediaItems) { didSelectItems in
                 showSheet = false
