@@ -35,14 +35,9 @@ struct EntryListView: View {
                     }
                 }
                 .onDelete(perform: deleteEntry)
+                // swipe to delete- swipe a little and click delete.
+                // swipe all the way and it deletes
             }
-//            List(entries) { entry in
-//                NavigationLink {
-//                    SingleEntryView(entry: entry)
-//                } label: {
-//                    EntryRowView(entry: entry)
-//                }
-//            }
         }
     }
 }

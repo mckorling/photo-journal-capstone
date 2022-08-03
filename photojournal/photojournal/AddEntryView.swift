@@ -91,6 +91,7 @@ struct AddEntryView: View {
                             showSheet = true
                         }, label: {
                             Text("Select Photos")
+                                .frame(maxWidth: .infinity, alignment: .center)
                         })
                         // this is from the photopickermodel
                         List(mediaItems.items, id: \.id) { item in
@@ -123,7 +124,9 @@ struct AddEntryView: View {
                             saveButtonSelected = true
                         }) { // button label
                             Text("Save")
+                                .frame(maxWidth: .infinity, alignment: .center)
                         } // end of button label
+                        
                     } //end of button section
                     
                     
