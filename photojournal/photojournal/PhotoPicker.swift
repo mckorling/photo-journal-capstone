@@ -18,7 +18,8 @@ import SwiftUI // --use UIViewControllerRepresentable protocol
 // conform it to the right protocol UIView....
 struct PhotoPicker: UIViewControllerRepresentable {
     // property here (gets passed in in PhotoPicker instance in ItemsView)
-    @ObservedObject var mediaItems: PickedMediaItems // could have used a different name from mediaItems
+  //  @ObservedObject var mediaItems: PickedMediaItems // could have used a different name from mediaItems
+    @Binding var mediaItems: [UIImage]
     // (above) it is not initialzed here like in ItemsView!
     // will pass the mediaItems object from ItemsView upon initialization of the PhotoPicker object
     
@@ -130,7 +131,8 @@ struct PhotoPicker: UIViewControllerRepresentable {
 //                        let image = UIImage(data: imageData!)
                         
                         DispatchQueue.main.async {
-                            self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
+                         //   self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
+                            self.photoPicker.mediaItems.append(image)
                             // if casting and unwrapping the optional object to image succeeds
                             // store the loaded image to a new PhotoPickerModel instance
                             // it's appended to mediaItem property (happens in main thread?)

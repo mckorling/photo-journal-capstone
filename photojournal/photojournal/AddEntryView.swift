@@ -20,9 +20,10 @@ struct AddEntryView: View {
     @State private var image3 = Data()
     @State private var entryText = ""
     
-    @State private var saveButtonSelected = false
+ //   @State private var saveButtonSelected = false
     @State private var showSheet = false
-    @ObservedObject var mediaItems = PickedMediaItems()
+   // @ObservedObject var mediaItems = PickedMediaItems()
+    @State private var mediaItems = [UIImage]()
     // PickedMediaItems is a class in PhotoPickerModel
     // mediaItems is an instance of PickedMediaItems class
     // property wrapper ObservedObject means the view can observe and react to changes that happpen in the items array that uses the property wrapper @Published in the PickedMediaItems class.
@@ -31,16 +32,16 @@ struct AddEntryView: View {
 
    
     func setImages(entry: Entry) {
-        if mediaItems.items.count == 3 {
-            entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
-            entry.image2 = mediaItems.items[1].photo?.jpegData(compressionQuality: 1.0)
-            entry.image3 = mediaItems.items[2].photo?.jpegData(compressionQuality: 1.0)
-        } else if mediaItems.items.count == 2 {
-            entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
-            entry.image2 = mediaItems.items[1].photo?.jpegData(compressionQuality: 1.0)
+        if mediaItems.count == 3 {
+            entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
+            entry.image2 = mediaItems[1].jpegData(compressionQuality: 1.0)
+            entry.image3 = mediaItems[2].jpegData(compressionQuality: 1.0)
+        } else if mediaItems.count == 2 {
+            entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
+            entry.image2 = mediaItems[1].jpegData(compressionQuality: 1.0)
             entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
-        } else if mediaItems.items.count == 1 {
-            entry.image1 = mediaItems.items[0].photo?.jpegData(compressionQuality: 1.0)
+        } else if mediaItems.count == 1 {
+            entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
             entry.image2 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
             entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
         } else {
@@ -58,7 +59,8 @@ struct AddEntryView: View {
         self.image2 = Data()
         self.image1 = Data()
         self.entryText = ""
-        mediaItems.items.removeAll()
+      //  mediaItems.items.removeAll()
+        self.mediaItems.removeAll()
     }
     
     var body: some View {
@@ -93,9 +95,9 @@ struct AddEntryView: View {
                             Text("Select Photos")
                                 .frame(maxWidth: .infinity, alignment: .center)
                         })
-                        // this is from the photopickermodel
-                        List(mediaItems.items, id: \.id) { item in
-                            Image(uiImage: item.photo ?? UIImage())
+                        // removed photopickermodel
+                        List(mediaItems, id: \.self) { item in
+                            Image(uiImage: item)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                         
@@ -121,7 +123,7 @@ struct AddEntryView: View {
                             try? moc.save()
                             // clear out form, should be able to select photos from scratch
                             resetFields()
-                            saveButtonSelected = true
+                           // saveButtonSelected = true
                         }) { // button label
                             Text("Save")
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -138,7 +140,8 @@ struct AddEntryView: View {
         //    }// end of nav view
             
         }.sheet(isPresented: $showSheet, content: {
-            PhotoPicker(mediaItems: mediaItems) { didSelectItems in
+            // shouldn't need to change
+            PhotoPicker(mediaItems: $mediaItems) { didSelectItems in
                 showSheet = false
             }
         }) // end of sheet
