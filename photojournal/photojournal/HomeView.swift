@@ -17,9 +17,11 @@ struct HomeView: View {
                 .opacity(0.30)
                 .ignoresSafeArea()
             VStack {
-                Text("Photo")
-                Text("Journal")
+                Image("photojournal-transparent")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
             }
+            
         }
     }
 }

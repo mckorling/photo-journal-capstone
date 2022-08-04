@@ -29,8 +29,12 @@ struct AddEntryView: View {
     // property wrapper ObservedObject means the view can observe and react to changes that happpen in the items array that uses the property wrapper @Published in the PickedMediaItems class.
 
     
-
-   
+    func getRandomImage() -> String {
+        let photos = ["bird", "kangaroo", "bird", "daschund"]
+        return photos.randomElement()!
+        
+    }
+    // random images in assets collection are from Unsplash
     func setImages(entry: Entry) {
         if mediaItems.count == 3 {
             entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
@@ -39,15 +43,15 @@ struct AddEntryView: View {
         } else if mediaItems.count == 2 {
             entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
             entry.image2 = mediaItems[1].jpegData(compressionQuality: 1.0)
-            entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+            entry.image3 = UIImage(named: getRandomImage())?.jpegData(compressionQuality: 1.0)
         } else if mediaItems.count == 1 {
             entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
-            entry.image2 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
-            entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+            entry.image2 = UIImage(named: getRandomImage())?.jpegData(compressionQuality: 1.0)
+            entry.image3 = UIImage(named: getRandomImage())?.jpegData(compressionQuality: 1.0)
         } else {
-            entry.image1 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
-            entry.image2 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
-            entry.image3 = UIImage(systemName: "camera")?.jpegData(compressionQuality: 0.5)
+            entry.image1 = UIImage(named: getRandomImage())?.jpegData(compressionQuality: 1.0)
+            entry.image2 = UIImage(named: getRandomImage())?.jpegData(compressionQuality: 1.0)
+            entry.image3 = UIImage(named: getRandomImage())?.jpegData(compressionQuality: 1.0)
         }
     }
     
