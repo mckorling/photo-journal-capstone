@@ -30,7 +30,7 @@ struct AddEntryView: View {
 
     
     func getRandomImage() -> String {
-        let photos = ["bird", "kangaroo", "bird", "daschund"]
+        let photos = ["bird", "kangaroo", "bird", "daschund", "koala", "lambs", "orangutan", "monkey", "polarbear", "buffalo"]
         return photos.randomElement()!
         
     }
