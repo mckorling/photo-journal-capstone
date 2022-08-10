@@ -90,7 +90,7 @@ struct AddEntryView: View {
 //                        return [latitude, longitude]
                     }
                 }
-//            }
+//            } dispatch
         }.resume()
         
         
@@ -157,8 +157,16 @@ struct AddEntryView: View {
                             let newEntry = Entry(context: moc)
                             
                             newEntry.id = UUID()
-                            newEntry.title = title
-                            newEntry.location = location
+                            if title == "" {
+                                newEntry.title = "Title"
+                            } else {
+                                newEntry.title = title
+                            }
+                            if location == "" {
+                                newEntry.location = "Unknown"
+                            } else {
+                                newEntry.location = location
+                            }
 //                            print("before fetch")
                             
                             Task {

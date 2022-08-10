@@ -26,7 +26,7 @@ struct SingleEntryView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 5.0)
                         .padding(.leading, 7.0)
-                    Text("\(entry.location ?? "Location"), \(entry.date!, style: .date)")
+                    Text("\(entry.location ?? "Unknown"), \(entry.date!, style: .date)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 15.0)
                         .padding(.leading, 7.0)
@@ -46,7 +46,7 @@ struct SingleEntryView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(.all, 7.0)
-                    Text(entry.entryText ?? "Default text")
+                    Text(entry.entryText ?? "")
                         .lineSpacing(10)
                         .padding(6)
                 }
