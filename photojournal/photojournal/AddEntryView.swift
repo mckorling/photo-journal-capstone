@@ -63,7 +63,7 @@ struct AddEntryView: View {
         return formatted
     }
     
-    func fetchAPI() {
+    func fetchAPI() async {
         let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
         URLSession.shared.dataTask(with: url!) { data, response, error in
 //            DispatchQueue.main.async {
@@ -72,22 +72,28 @@ struct AddEntryView: View {
                     if let decodedLocation = try?
                         JSONDecoder().decode([Result].self, from: data) {
                         // use default values instead for converting to Double???
-                        print("got coords")
+//                        print("got coords")
 //                        print("latitude: \(decodedLocation[0].lat)")
 //                        print("longitude: \(decodedLocation[0].lon)")
                         // correctly stores lat and lon
                         latitude = Double(decodedLocation[0].lat)!
-//                        print(latitude)
+//                        print(latitude) --> works
                         longitude = Double(decodedLocation[0].lon)!
+//                        print("in fetch, \(latitude), \(longitude)")
+//                        return [latitude, longitude]
                     }
                     else { // error
                         print("else statement in fetchAPI")
                         latitude = 0
                         longitude = 0
+//                        print("in fetch, \(latitude), \(longitude)")
+//                        return [latitude, longitude]
                     }
                 }
 //            }
         }.resume()
+        
+        
     }
     
     
@@ -153,14 +159,23 @@ struct AddEntryView: View {
                             newEntry.id = UUID()
                             newEntry.title = title
                             newEntry.location = location
-                            print("before fetch")
-                            fetchAPI() // need to fix asynchronous call!!!
+//                            print("before fetch")
+                            
+                            Task {
+//                                let coords = await fetchAPI() // need to fix asynchronous call!!!
+                                await fetchAPI()
+                                newEntry.latitude = latitude
+                                newEntry.longitude = longitude
+//                                print("after fetch")
+//                                print(coords[0])
+//                                print(coords[1])
+                            }
+                            
                             // might need to make a coordinates variable
                             // something like: let coords = await fetchAPI()
                             // then can assign lat to coords[0] and lon to [1]??
-                            print("after fetch")
-                            newEntry.latitude = latitude
-                            newEntry.longitude = longitude
+                            
+                            
                             newEntry.date = date
                             newEntry.entryText = entryText
                             setImages(entry: newEntry)
