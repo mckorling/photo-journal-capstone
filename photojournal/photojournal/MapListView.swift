@@ -20,6 +20,7 @@ struct MapListView: View {
     func setNewArr(entriesArr: FetchedResults<Entry>) -> [EntryAnnotation] {
         var entryAnnotationArr = [EntryAnnotation]()
         for entry in entriesArr {
+//            print("\(entry.location) at \(entry.latitude) and \(entry.longitude)")
             let newAnnotation = EntryAnnotation(entry: entry, coordinates: CLLocationCoordinate2D(latitude: entry.latitude, longitude: entry.longitude))
             entryAnnotationArr.append(newAnnotation)
         }

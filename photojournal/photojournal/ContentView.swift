@@ -23,6 +23,7 @@ struct ContentView: View {
                 HomeView()
                     .navigationTitle("Home")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "house.circle.fill")
                 Text("Home")
@@ -31,6 +32,7 @@ struct ContentView: View {
                 AddEntryView()
                     .navigationTitle("New Journal Entry")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "plus.square.fill")
                 Text("New")
@@ -39,6 +41,7 @@ struct ContentView: View {
                 EntryListView()
                     .navigationTitle("Past Entries")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "magazine.fill")
                 Text("Lookup")
@@ -47,6 +50,7 @@ struct ContentView: View {
                 MapListView()
                     .navigationTitle("Map")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "globe.americas.fill")
                 Text("Map")
