@@ -21,7 +21,7 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 HomeView()
-                .navigationTitle("Home")
+                    .navigationTitle("Home")
             }
             .tabItem {
                 Image(systemName: "house.circle.fill")
@@ -43,6 +43,14 @@ struct ContentView: View {
                 Image(systemName: "magazine.fill")
                 Text("Lookup")
             }.tag(3)
+            NavigationView {
+                MapListView()
+                    .navigationTitle("Map")
+            }
+            .tabItem {
+                Image(systemName: "globe.americas.fill")
+                Text("Map")
+            }.tag(4)
         }
     }
 }

@@ -30,6 +30,7 @@ struct SingleEntryView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 15.0)
                         .padding(.leading, 7.0)
+                    Text("latitude: \(entry.latitude) and longitude: \(entry.longitude)")
                     Image(uiImage: UIImage(data: entry.image1!) ?? UIImage())
                         .resizable()
                         .aspectRatio(contentMode: .fit)

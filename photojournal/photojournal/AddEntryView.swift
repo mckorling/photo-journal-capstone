@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddEntryView: View {
     @Environment(\.managedObjectContext) var moc
-    
+    let apiKey = "pk.1f00c7cb204323568c51950910d520e8"
     // use @State properties to store all data to make an entry (all model properties)
     // id will get created dynamically
     @State private var title = ""
@@ -19,6 +19,8 @@ struct AddEntryView: View {
     @State private var image2 = Data()
     @State private var image3 = Data()
     @State private var entryText = ""
+    @State private var latitude = Double()
+    @State private var longitude = Double()
     
  //   @State private var saveButtonSelected = false
     @State private var showSheet = false
@@ -55,6 +57,41 @@ struct AddEntryView: View {
         }
     }
     
+    func formatLocString(location: String) -> String {
+        let locArray = location.components(separatedBy: " ")
+        let formatted = locArray.joined(separator: "+")
+        return formatted
+    }
+    
+    func fetchAPI() {
+        let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+//            DispatchQueue.main.async {
+                if let data = data {
+//                    print("in data")
+                    if let decodedLocation = try?
+                        JSONDecoder().decode([Result].self, from: data) {
+                        // use default values instead for converting to Double???
+                        print("got coords")
+//                        print("latitude: \(decodedLocation[0].lat)")
+//                        print("longitude: \(decodedLocation[0].lon)")
+                        // correctly stores lat and lon
+                        latitude = Double(decodedLocation[0].lat)!
+//                        print(latitude)
+                        longitude = Double(decodedLocation[0].lon)!
+                    }
+                    else { // error
+                        print("else statement in fetchAPI")
+                        latitude = 0
+                        longitude = 0
+                    }
+                }
+//            }
+        }.resume()
+    }
+    
+    
+    
     func resetFields() {
         self.title = ""
         self.location = ""
@@ -81,6 +118,7 @@ struct AddEntryView: View {
                     Section(header: Text("Start a new journal entry")) {
                         TextField("Title", text: $title)
                         TextField("Location", text: $location)
+                        
                     }
                     Section(header: Text("Select the date")) {
                         DatePicker("Select date", selection: $date, in: ...Date())
@@ -111,15 +149,21 @@ struct AddEntryView: View {
                         
                         Button(action: {
                             let newEntry = Entry(context: moc)
+                            
                             newEntry.id = UUID()
                             newEntry.title = title
                             newEntry.location = location
+                            print("before fetch")
+                            fetchAPI() // need to fix asynchronous call!!!
+                            // might need to make a coordinates variable
+                            // something like: let coords = await fetchAPI()
+                            // then can assign lat to coords[0] and lon to [1]??
+                            print("after fetch")
+                            newEntry.latitude = latitude
+                            newEntry.longitude = longitude
                             newEntry.date = date
                             newEntry.entryText = entryText
                             setImages(entry: newEntry)
-    //                        newEntry.image1 = mediaItems.items[0].photo!.jpegData(compressionQuality: 1.0)
-    //                        newEntry.image2 = mediaItems.items[1].photo!.jpegData(compressionQuality: 1.0)
-    //                        newEntry.image3 = mediaItems.items[2].photo!.jpegData(compressionQuality: 1.0)
                             
                             // managed object context to save itself, writes changes to persistant store.
                             // a throwing function call
@@ -152,6 +196,11 @@ struct AddEntryView: View {
     }
     // outside of view
 } // end of struct
+
+struct Result: Decodable {
+    var lat: String
+    var lon: String
+}
 
 struct AddEntryView_Previews: PreviewProvider {
     static var previews: some View {

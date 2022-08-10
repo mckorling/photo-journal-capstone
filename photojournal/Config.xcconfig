@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  photojournal
+//
+//  Created by Megan Korling on 8/8/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+API_KEY = "pk.1f00c7cb204323568c51950910d520e8"

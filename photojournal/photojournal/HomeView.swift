@@ -17,9 +17,12 @@ struct HomeView: View {
                 .opacity(0.30)
                 .ignoresSafeArea()
             VStack {
-                Image("photojournal-transparent")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                Image("collage-transparent")
+//                Image("photojournal-transparent")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+                // add collage image
+                Image("collage-transparent")
             }
             
         }
