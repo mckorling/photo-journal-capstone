@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddEntryView: View {
+    private enum Field {
+        case title, location, entryText
+    }
     @Environment(\.managedObjectContext) var moc
     let apiKey = "pk.1f00c7cb204323568c51950910d520e8"
     // use @State properties to store all data to make an entry (all model properties)
@@ -29,7 +32,7 @@ struct AddEntryView: View {
     // PickedMediaItems is a class in PhotoPickerModel
     // mediaItems is an instance of PickedMediaItems class
     // property wrapper ObservedObject means the view can observe and react to changes that happpen in the items array that uses the property wrapper @Published in the PickedMediaItems class.
-
+    @FocusState private var focusedField: Field?
     
     func getRandomImage() -> String {
         let photos = ["bird", "kangaroo", "bird", "daschund", "koala", "lambs", "orangutan", "monkey", "polarbear", "buffalo"]
@@ -112,12 +115,14 @@ struct AddEntryView: View {
             gradient
                 .opacity(0.30)
                 .ignoresSafeArea()
+//            ScrollView {
             VStack {
                 Form {
                     Section(header: Text("Start a new journal entry")) {
                         TextField("Title", text: $title)
+                            .focused($focusedField, equals: .title)
                         TextField("Location", text: $location)
-                        
+                            .focused($focusedField, equals: .location)
                     }
                     Section(header: Text("Select the date")) {
                         DatePicker("Select date", selection: $date, in: ...Date())
@@ -125,6 +130,7 @@ struct AddEntryView: View {
                     }
                     Section {
                         TextEditor(text: $entryText)
+                            .focused($focusedField, equals: .entryText)
                     } header: {
                         Text("What did you do on this day?")
                     }
@@ -183,10 +189,20 @@ struct AddEntryView: View {
                         
                     } //end of button section
                 }
+            
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
+                }
                 .onAppear{
                     UITableView.appearance().backgroundColor = .clear
                 }
-            }
+            } // end vstack
+            
+            
         }.sheet(isPresented: $showSheet, content: {
             // shouldn't need to change
             PhotoPicker(mediaItems: $mediaItems) { didSelectItems in

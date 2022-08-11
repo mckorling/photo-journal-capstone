@@ -48,7 +48,7 @@ struct SingleEntryView: View {
                         .padding(.all, 7.0)
                     Text(entry.entryText ?? "")
                         .lineSpacing(10)
-                        .padding(6)
+                        .padding(7.0)
                 }
             }
         }
