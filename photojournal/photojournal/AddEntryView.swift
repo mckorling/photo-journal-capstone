@@ -153,13 +153,13 @@ struct AddEntryView: View {
                             } else {
                                 newEntry.title = title
                             }
-//                            if location == "" {
-//                                newEntry.location = "Unknown"
-//                            } else {
-//                                newEntry.location = location
-//                            }
-//                            print("before fetch")
-                            newEntry.location = location
+                            if location == "" {
+                                newEntry.location = "Unknown"
+                            } else {
+                                newEntry.location = location
+                            }
+                            print("before fetch")
+//                            newEntry.location = location
                             Task {
                                 await fetchAPI()
                                 newEntry.latitude = latitude
