@@ -17,13 +17,21 @@ struct HomeView: View {
                 .opacity(0.30)
                 .ignoresSafeArea()
             VStack {
+//                Text("Photo")
+//                Text("Journal")
+                    
                 Image("collage-transparent")
+                    .padding(-11.0)
+                
+                    
 //                Image("photojournal-transparent")
 //                    .resizable()
 //                    .aspectRatio(contentMode: .fit)
                 // add collage image
                 Image("collage-transparent")
+                    .padding(.top, -14.0)
             }
+            
             
         }
     }

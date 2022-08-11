@@ -21,7 +21,7 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 HomeView()
-                    .navigationTitle("Home")
+                    .navigationTitle("Photo Journal")
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
