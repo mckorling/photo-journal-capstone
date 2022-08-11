@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6664E44B28A17AAB005C5F92 /* MapListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664E44A28A17AAB005C5F92 /* MapListView.swift */; };
+		66583A3E28A5767900E3241B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66583A3D28A5767900E3241B /* MapView.swift */; };
 		66E5FA922890A765007C6866 /* photojournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA912890A765007C6866 /* photojournalApp.swift */; };
 		66E5FA942890A765007C6866 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5FA932890A765007C6866 /* ContentView.swift */; };
 		66E5FA962890A766007C6866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E5FA952890A766007C6866 /* Assets.xcassets */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6664E44A28A17AAB005C5F92 /* MapListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListView.swift; sourceTree = "<group>"; };
+		66583A3D28A5767900E3241B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		6664E44E28A1E956005C5F92 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		6664E44F28A1EA7F005C5F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		66E5FA8E2890A765007C6866 /* photojournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photojournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +84,7 @@
 				66E5FAB028933FA9007C6866 /* AddEntryView.swift */,
 				66E5FAB6289439CA007C6866 /* EntryListView.swift */,
 				66E5FAB828943F17007C6866 /* SingleEntryView.swift */,
-				6664E44A28A17AAB005C5F92 /* MapListView.swift */,
+				66583A3D28A5767900E3241B /* MapView.swift */,
 				66E5FABA28943F29007C6866 /* EntryRowView.swift */,
 				66E5FAAD2893361C007C6866 /* DataController.swift */,
 				66E5FAAF28933EB1007C6866 /* Views */,
@@ -183,8 +183,8 @@
 				66E5FAB928943F17007C6866 /* SingleEntryView.swift in Sources */,
 				66E5FAB3289344B3007C6866 /* PhotoPickerModel.swift in Sources */,
 				66E5FAAC28932BD3007C6866 /* photojournalModels.xcdatamodeld in Sources */,
+				66583A3E28A5767900E3241B /* MapView.swift in Sources */,
 				66E5FAB128933FA9007C6866 /* AddEntryView.swift in Sources */,
-				6664E44B28A17AAB005C5F92 /* MapListView.swift in Sources */,
 				66E5FAF028984EAF007C6866 /* HomeView.swift in Sources */,
 				66E5FAAE2893361C007C6866 /* DataController.swift in Sources */,
 				66E5FABB28943F29007C6866 /* EntryRowView.swift in Sources */,

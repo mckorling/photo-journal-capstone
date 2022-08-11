@@ -34,8 +34,8 @@ struct AddEntryView: View {
     func getRandomImage() -> String {
         let photos = ["bird", "kangaroo", "bird", "daschund", "koala", "lambs", "orangutan", "monkey", "polarbear", "buffalo"]
         return photos.randomElement()!
-        
     }
+    
     // random images in assets collection are from Unsplash
     func setImages(entry: Entry) {
         if mediaItems.count == 3 {
@@ -66,7 +66,6 @@ struct AddEntryView: View {
     func fetchAPI() async {
         let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
         URLSession.shared.dataTask(with: url!) { data, response, error in
-//            DispatchQueue.main.async {
                 if let data = data {
 //                    print("in data")
                     if let decodedLocation = try?
@@ -90,13 +89,8 @@ struct AddEntryView: View {
 //                        return [latitude, longitude]
                     }
                 }
-//            } dispatch
         }.resume()
-        
-        
     }
-    
-    
     
     func resetFields() {
         self.title = ""
@@ -118,7 +112,6 @@ struct AddEntryView: View {
             gradient
                 .opacity(0.30)
                 .ignoresSafeArea()
-       //     NavigationView {
             VStack {
                 Form {
                     Section(header: Text("Start a new journal entry")) {
@@ -148,42 +141,31 @@ struct AddEntryView: View {
                             Image(uiImage: item)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                        
                         }
                     }
                     Section {
                         
                         Button(action: {
                             let newEntry = Entry(context: moc)
-                            
                             newEntry.id = UUID()
                             if title == "" {
                                 newEntry.title = "Title"
                             } else {
                                 newEntry.title = title
                             }
-                            if location == "" {
-                                newEntry.location = "Unknown"
-                            } else {
-                                newEntry.location = location
-                            }
+//                            if location == "" {
+//                                newEntry.location = "Unknown"
+//                            } else {
+//                                newEntry.location = location
+//                            }
 //                            print("before fetch")
-                            
+                            newEntry.location = location
                             Task {
-//                                let coords = await fetchAPI() // need to fix asynchronous call!!!
                                 await fetchAPI()
                                 newEntry.latitude = latitude
                                 newEntry.longitude = longitude
 //                                print("after fetch")
-//                                print(coords[0])
-//                                print(coords[1])
                             }
-                            
-                            // might need to make a coordinates variable
-                            // something like: let coords = await fetchAPI()
-                            // then can assign lat to coords[0] and lon to [1]??
-                            
-                            
                             newEntry.date = date
                             newEntry.entryText = entryText
                             setImages(entry: newEntry)
@@ -194,22 +176,17 @@ struct AddEntryView: View {
                             try? moc.save()
                             // clear out form, should be able to select photos from scratch
                             resetFields()
-                           // saveButtonSelected = true
                         }) { // button label
                             Text("Save")
                                 .frame(maxWidth: .infinity, alignment: .center)
                         } // end of button label
                         
                     } //end of button section
-                    
-                    
                 }
                 .onAppear{
                     UITableView.appearance().backgroundColor = .clear
                 }
             }
-        //    }// end of nav view
-            
         }.sheet(isPresented: $showSheet, content: {
             // shouldn't need to change
             PhotoPicker(mediaItems: $mediaItems) { didSelectItems in

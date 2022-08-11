@@ -47,7 +47,7 @@ struct ContentView: View {
                 Text("Lookup")
             }.tag(3)
             NavigationView {
-                MapListView()
+                MapView()
                     .navigationTitle("Map")
             }
             .navigationViewStyle(StackNavigationViewStyle())
