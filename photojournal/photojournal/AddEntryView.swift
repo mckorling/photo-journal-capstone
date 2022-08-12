@@ -66,15 +66,15 @@ struct AddEntryView: View {
         return formatted
     }
     
-    func fetchAPI() async {
+    func fetchAPI(entry: Entry) async {
         let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
         URLSession.shared.dataTask(with: url!) { data, response, error in
                 if let data = data {
-//                    print("in data")
+                    print("in data")
                     if let decodedLocation = try?
                         JSONDecoder().decode([Result].self, from: data) {
                         // use default values instead for converting to Double???
-//                        print("got coords")
+                        print("got coords")
 //                        print("latitude: \(decodedLocation[0].lat)")
 //                        print("longitude: \(decodedLocation[0].lon)")
                         // correctly stores lat and lon
@@ -83,11 +83,17 @@ struct AddEntryView: View {
                         longitude = Double(decodedLocation[0].lon)!
 //                        print("in fetch, \(latitude), \(longitude)")
 //                        return [latitude, longitude]
+                        entry.latitude = latitude
+                        entry.longitude = longitude
+                        print("in fetch, coords stored")
                     }
                     else { // error
                         print("else statement in fetchAPI")
                         latitude = 0
                         longitude = 0
+                        entry.latitude = latitude
+                        entry.longitude = longitude
+                        print("in fetch, DEFAULT coords stored")
 //                        print("in fetch, \(latitude), \(longitude)")
 //                        return [latitude, longitude]
                     }
@@ -105,6 +111,9 @@ struct AddEntryView: View {
         self.entryText = ""
       //  mediaItems.items.removeAll()
         self.mediaItems.removeAll()
+        self.latitude = Double()
+        self.longitude = Double()
+        print("fields reset")
     }
     
     var body: some View {
@@ -167,19 +176,20 @@ struct AddEntryView: View {
                             print("before fetch")
 //                            newEntry.location = location
                             Task {
-                                await fetchAPI()
-                                newEntry.latitude = latitude
-                                newEntry.longitude = longitude
-//                                print("after fetch")
+                                await fetchAPI(entry: newEntry)
+//                                newEntry.latitude = latitude
+//                                newEntry.longitude = longitude
+                                print("after fetch")
                             }
                             newEntry.date = date
                             newEntry.entryText = entryText
                             setImages(entry: newEntry)
-                            
+                            print("everything set?")
                             // managed object context to save itself, writes changes to persistant store.
                             // a throwing function call
                             // use try? in case it fails, not catching errors
                             try? moc.save()
+                            print("saved")
                             // clear out form, should be able to select photos from scratch
                             resetFields()
                         }) { // button label
