@@ -22,7 +22,10 @@ struct HomeView: View {
                     
                 Image("collage-transparent")
                     .padding(-11.0)
-                
+//                Image("camera-gradient-transparent")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .padding(.trailing, 29.0)
                     
 //                Image("photojournal-transparent")
 //                    .resizable()
