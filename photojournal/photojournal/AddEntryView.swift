@@ -66,7 +66,7 @@ struct AddEntryView: View {
         return formatted
     }
     
-    func fetchAPI() async {
+    func fetchAPI(entry: Entry) async {
         let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
         URLSession.shared.dataTask(with: url!) { data, response, error in
                 if let data = data {
@@ -83,11 +83,15 @@ struct AddEntryView: View {
                         longitude = Double(decodedLocation[0].lon)!
 //                        print("in fetch, \(latitude), \(longitude)")
 //                        return [latitude, longitude]
+                        entry.latitude = latitude
+                        entry.longitude = longitude
                     }
                     else { // error
                         print("else statement in fetchAPI")
                         latitude = 0
                         longitude = 0
+                        entry.latitude = latitude
+                        entry.longitude = longitude
 //                        print("in fetch, \(latitude), \(longitude)")
 //                        return [latitude, longitude]
                     }
@@ -105,6 +109,8 @@ struct AddEntryView: View {
         self.entryText = ""
       //  mediaItems.items.removeAll()
         self.mediaItems.removeAll()
+        self.latitude = Double()
+        self.longitude = Double()
     }
     
     var body: some View {
@@ -167,9 +173,9 @@ struct AddEntryView: View {
                             print("before fetch")
 //                            newEntry.location = location
                             Task {
-                                await fetchAPI()
-                                newEntry.latitude = latitude
-                                newEntry.longitude = longitude
+                                await fetchAPI(entry: newEntry)
+//                                newEntry.latitude = latitude
+//                                newEntry.longitude = longitude
 //                                print("after fetch")
                             }
                             newEntry.date = date
