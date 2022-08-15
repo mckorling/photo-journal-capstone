@@ -3,31 +3,24 @@
 //  photojournal
 //
 //  Created by Megan Korling on 7/28/22.
-//
+//  Tutorial followed: https://www.youtube.com/watch?v=bvm3ZLmwOdU&t=1s 
 
 import Foundation
 import CoreData
+// Only need to import CoreData in this file
 
-
-// conform to ObservableObject protocol so that we can use @state object with it
-// created when app launches and stay alive as long as it's running
+// Created when app launches and stays alive while it's running
 class DataController: ObservableObject {
-    // responsible for loading a model and giving us data inside
+    // Responsible for loading a model and giving the data inside
     let container = NSPersistentContainer(name: "photojournalModels") // points to xcdatamodeld file
-    // tells core data to use model in name
-    // doesn't acutally load it yet
-    // data models just contain the model - not the data
     
-    // to load data, which might fail
+    // Load said data and catch error if loading fails
     init() {
-        // load persistant stores when ?? is created
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("core data failed to load: \(error.localizedDescription)")
             }
-            // make an instance of data controller and send it into swift environment
-            // once app launches, store in swiftui environ, so everywhere in app can use it
-            // see photojournalApp file
+            // See photojournalApp file for instantiation of DataController object
         }
     }
 }

@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct AddEntryView: View {
+    // Cases where the keyboard is used, so that it can be dismissed with focusedField and toolbar
     private enum Field {
         case title, location, entryText
     }
+    @FocusState private var focusedField: Field?
     @Environment(\.managedObjectContext) var moc
+    
     let apiKey = "pk.1f00c7cb204323568c51950910d520e8"
-//    let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
-    // use @State properties to store all data to make an entry (all model properties)
-    // id will get created dynamically
+    // Unsuccessfully tried to make api key secret (next line)
+    // let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
+    
+    // Use @State for properties to store all data whose value can change to make an Entry
+    // id property will get created dynamically
     @State private var title = ""
     @State private var location = ""
-    @State private var date = Date()
+    @State private var date = Date() // Current date is default if user doesn't enter one
     @State private var image1 = Data()
     @State private var image2 = Data()
     @State private var image3 = Data()
@@ -26,21 +31,23 @@ struct AddEntryView: View {
     @State private var latitude = Double()
     @State private var longitude = Double()
     
- //   @State private var saveButtonSelected = false
-    @State private var showSheet = false
-   // @ObservedObject var mediaItems = PickedMediaItems()
-    @State private var mediaItems = [UIImage]()
-    // PickedMediaItems is a class in PhotoPickerModel
-    // mediaItems is an instance of PickedMediaItems class
-    // property wrapper ObservedObject means the view can observe and react to changes that happpen in the items array that uses the property wrapper @Published in the PickedMediaItems class.
-    @FocusState private var focusedField: Field?
+    @State private var showSheet = false // toggle value to show Photo Picker or not
+    @State private var mediaItems = [UIImage]() // will hold selected photos, is not saved directly to Core Data
+
     
+    // MARK: Helper functions related to photos
+    // I had difficulty storing a list of images converted to Data
+    // I opted to instead store three images, converted to Data
+    // If a user doesn't select three images from their photo library, a default random image is selected
+    // This function returns the name of the image that can be loaded from Assets
+    // All images are from Unsplash
     func getRandomImage() -> String {
         let photos = ["bird", "kangaroo", "bird", "daschund", "koala", "lambs", "orangutan", "monkey", "polarbear", "buffalo"]
         return photos.randomElement()!
     }
     
-    // random images in assets collection are from Unsplash
+    // Explicitely set the value for each image property depending on how many the user selected (the count of mediaItems)
+    // To convert to Data type, jpegData method is better than pngData method
     func setImages(entry: Entry) {
         if mediaItems.count == 3 {
             entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
@@ -61,45 +68,47 @@ struct AddEntryView: View {
         }
     }
     
+    // MARK: Helper functions related to API call
+    // Format the user entered location to replace " " with "+"
+    // This way the call will not fail because of ill-formated query param
     func formatLocString(location: String) -> String {
         let locArray = location.components(separatedBy: " ")
         let formatted = locArray.joined(separator: "+")
         return formatted
     }
     
+    // Call LocationIQ API to get the latitude and longitude of a location
+    // It will also set the entry's latitude and longitude properties to avoid issues with it being an aysnchronous call
     func fetchAPI(entry: Entry) async {
+        // Provide query params directly into the url
+        // Set the limit to 1 to only get back 1 object in response body
         let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
         URLSession.shared.dataTask(with: url!) { data, response, error in
                 if let data = data {
-//                    print("in data")
                     if let decodedLocation = try?
+                        // Decode data using a custom designed structure called Result (MARKed at bottom of file)
+                        // It expects the data to be a list of Result objects, which contain only the values I need from LocationIQ
                         JSONDecoder().decode([Result].self, from: data) {
-                        // use default values instead for converting to Double???
-//                        print("got coords")
-//                        print("latitude: \(decodedLocation[0].lat)")
-//                        print("longitude: \(decodedLocation[0].lon)")
-                        // correctly stores lat and lon
+                        // The limit was set to 1 as a query param, so only the first element needs to be accessed in decodedLocation
+                        // Convert JSON's String values to Double to match Entry entity
                         latitude = Double(decodedLocation[0].lat)!
-//                        print(latitude) --> works
                         longitude = Double(decodedLocation[0].lon)!
-//                        print("in fetch, \(latitude), \(longitude)")
-//                        return [latitude, longitude]
                         entry.latitude = latitude
                         entry.longitude = longitude
                     }
-                    else { // error
-                        print("else statement in fetchAPI")
+                    else { // Error occurred, couldn't set a value to decodedLocation
+                        // Use default values for latitude and longitude
                         latitude = 0
                         longitude = 0
                         entry.latitude = latitude
                         entry.longitude = longitude
-//                        print("in fetch, \(latitude), \(longitude)")
-//                        return [latitude, longitude]
                     }
                 }
         }.resume()
     }
     
+    // MARK: Helper function after "save"
+    // Reset all form fields to default values so user can start another Entry
     func resetFields() {
         self.title = ""
         self.location = ""
@@ -108,25 +117,26 @@ struct AddEntryView: View {
         self.image2 = Data()
         self.image1 = Data()
         self.entryText = ""
-      //  mediaItems.items.removeAll()
         self.mediaItems.removeAll()
         self.latitude = Double()
         self.longitude = Double()
     }
     
+    // MARK: Start of View
     var body: some View {
         let gradient = LinearGradient(colors: [.mint, .pink, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
-        
         
         ZStack {
             gradient
                 .opacity(0.30)
                 .ignoresSafeArea()
-//            ScrollView {
             VStack {
                 Form {
                     Section(header: Text("Start a new journal entry")) {
                         TextField("Title", text: $title)
+                            // Modifier focused: matches to an enumeration field
+                            // Works with toolbar modifier on Form container
+                            // Lets the user dismiss the keyboard by tapping "DONE"
                             .focused($focusedField, equals: .title)
                         TextField("Location", text: $location)
                             .focused($focusedField, equals: .location)
@@ -134,6 +144,7 @@ struct AddEntryView: View {
                     Section(header: Text("Select the date")) {
                         DatePicker("Select date", selection: $date, in: ...Date())
                             .datePickerStyle(GraphicalDatePickerStyle())
+                        // Time shows in this style, but is not used later
                     }
                     Section {
                         TextEditor(text: $entryText)
@@ -142,14 +153,14 @@ struct AddEntryView: View {
                         Text("What did you do on this day?")
                     }
                     Section (footer: Text("Up to 3 photos allowed")){
-                        
                         Button(action: {
+                            // Shows Photo Picker if true
                             showSheet = true
                         }, label: {
                             Text("Select Photos")
                                 .frame(maxWidth: .infinity, alignment: .center)
                         })
-                        // removed photopickermodel
+                        // Displays any selected photos (which have not been saved and converted to Data yet)
                         List(mediaItems, id: \.self) { item in
                             Image(uiImage: item)
                                 .resizable()
@@ -157,10 +168,12 @@ struct AddEntryView: View {
                         }
                     }
                     Section {
-                        
+                        // MARK: Save Button Action
                         Button(action: {
+                            // create new Entry for user
                             let newEntry = Entry(context: moc)
-                            newEntry.id = UUID()
+                            newEntry.id = UUID() // No user interaction for ID
+                            // Set default values for title and location properties if user declines
                             if title == "" {
                                 newEntry.title = "Title"
                             } else {
@@ -171,55 +184,49 @@ struct AddEntryView: View {
                             } else {
                                 newEntry.location = location
                             }
-                            print("before fetch")
-//                            newEntry.location = location
+                            // await fetchAPI to finish running (it also sets newEntry's latitude and longitude properties)
                             Task {
                                 await fetchAPI(entry: newEntry)
-//                                newEntry.latitude = latitude
-//                                newEntry.longitude = longitude
-//                                print("after fetch")
                             }
                             newEntry.date = date
                             newEntry.entryText = entryText
-                            setImages(entry: newEntry)
+                            setImages(entry: newEntry) // will convert each selected image to data and any remaining images to default image data
                             
-                            // managed object context to save itself, writes changes to persistant store.
-                            // a throwing function call
-                            // use try? in case it fails, not catching errors
+                            // managed object context to save entry, writes changes to persistant store.
                             try? moc.save()
-                            // clear out form, should be able to select photos from scratch
+                            
                             resetFields()
-                        }) { // button label
+                        }) { // Button label
                             Text("Save")
                                 .frame(maxWidth: .infinity, alignment: .center)
-                        } // end of button label
-                        
-                    } //end of button section
+                        }
+                    } // End of button section
                 }
-            
                 .toolbar {
+                    // Dismiss keyboard if done typing
                     ToolbarItem(placement: .keyboard) {
                         Button("Done") {
                             focusedField = nil
                         }
                     }
                 }
+                // Background gradient on ZStack can overwrite default background
                 .onAppear{
                     UITableView.appearance().backgroundColor = .clear
                 }
-            } // end vstack
-            
-            
+            }
         }.sheet(isPresented: $showSheet, content: {
-            // shouldn't need to change
+            // Photo Picker will appear over full View when showSheet is true
             PhotoPicker(mediaItems: $mediaItems) { didSelectItems in
-                showSheet = false
+                showSheet = false // Toggle to not show when user dismisses it
             }
         }) // end of sheet
     }
-    // outside of view
-} // end of struct
+}
 
+// MARK: Result Structure
+// The only two values needed from the LocationIQ API call response are lat and lon
+// lat and lon match the naming in the actual API call response
 struct Result: Decodable {
     var lat: String
     var lon: String

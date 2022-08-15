@@ -3,9 +3,11 @@
 //  photojournal
 //
 //  Created by Megan Korling on 7/28/22.
-//
+//  Tutorial: https://www.appcoda.com/phpicker/
 
-// to help handle and save data
+// NOT USING THIS FILE, BUT KEEPING IT BECAUSE IT CAN BE USED TO EXPAND PROJECT LATER
+// IF I WANT TO STORE VIDEOS OR LIVEPHOTOS
+
 import SwiftUI
 import Photos
 
@@ -14,30 +16,26 @@ struct PhotoPickerModel: Identifiable {
     enum MediaType {
         case photo, video, livePhoto
     }
-    
-    // a later task: present a collection of PhotoPickerModel items in a SwiftUI List view
-    // a List (and other types) need each item to be uniquely identifiable
-    // we tell the Model to conform to a specific protocol: Identifiable
-    // Identifiable has requirement that there is a property called id, can be any type
-    // UUID = universaly unique value that can be used to identify types, interfaces, and other items
-    // declare properties:
+
+    // A List (and other types) need each item to be uniquely identifiable
+    // Tell the Model to conform to protocol: Identifiable
+    // Identifiable requires an id, can be any type
     var id: String
-    var photo: UIImage? //normal photos
-    var url: URL? // video can't be fetched as a single object. store the url to the file containing a picked video
+    var photo: UIImage? // Normal photos
+    var url: URL? // Video can't be fetched as a single object. Store the url to the file containing a picked video
     var livePhoto: PHLivePhoto?
     var mediaType: MediaType = .photo // default initial value of photo
-    // optional properties have a '?'
-    // their default value is nil
-    // in this model, just one of these properties will get an actual value
+    // Optional properties have a '?'
+    // Just one of these properties will get an actual value
     
-    // custom initializer in the case of photos
+    // Custom initializer in the case of photos
     init(with photo: UIImage) {
-        id = UUID().uuidString // unique identifier for current item
-        self.photo = photo // keep photo to the photo property
-        mediaType = .photo // being specfic and defining the mediaType (even though default is photo)
+        id = UUID().uuidString
+        self.photo = photo // Keep photo to the photo property
+        mediaType = .photo // Specifically define the mediaType
     }
     
-    // do the same for videos and livePhotos now too
+    // Do the same for videos and livePhotos too (follow tutorial for missing code related to videos and live photos)
     
 //    init(with videoURL: URL) {
 //        id = UUID().uuidString
@@ -54,15 +52,7 @@ struct PhotoPickerModel: Identifiable {
 
 // ObservableObject makes it possible to tell SwiftUI views about changes happening to the array: items
 class PickedMediaItems: ObservableObject {
-    // need one more custom type that actually keeps an array of such objects
-    // will store media items once extraceted from picker results
-    // also is datasource for List view in ItemsView
-    
-    // MARK: Or can I get length of items and if it's too long, don't append?
-    
     @Published var items = [PhotoPickerModel]()
-    // items is an array of PhotoPickerModel objects.
-    // when something is added or removed, ItemsView will be notified. The entire view will get rerendered.
     
     func append(item: PhotoPickerModel) {
         items.append(item)

@@ -16,7 +16,7 @@ struct EntryListView: View {
             let entry = entries[offset]
             moc.delete(entry)
         }
-        try? moc.save()
+        try? moc.save() // Save changes with deleted entry
     }
     
     var body: some View {
@@ -27,6 +27,9 @@ struct EntryListView: View {
                 .opacity(0.30)
                 .ignoresSafeArea()
             List {
+                // One row is one entry. Tap to go to said Entry's View.
+                // Entries are displayed by most recent Date
+                // ForEach is needed in order to perform delete action
                 ForEach(entries) { entry in
                     NavigationLink {
                         SingleEntryView(entry: entry)
@@ -35,8 +38,7 @@ struct EntryListView: View {
                     }
                 }
                 .onDelete(perform: deleteEntry)
-                // swipe to delete- swipe a little and click delete.
-                // swipe all the way and it deletes
+                // Swipe to delete- swipe a little and click delete or full swipe to auto delete
             }
         }
     }

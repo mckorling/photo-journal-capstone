@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    // View holds no functionality other than being the View that app opens to
     
     var body: some View {
         let gradient = LinearGradient(colors: [.mint, .pink, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -17,25 +18,12 @@ struct HomeView: View {
                 .opacity(0.30)
                 .ignoresSafeArea()
             VStack {
-//                Text("Photo")
-//                Text("Journal")
-                    
+                // Stack simple background image
                 Image("collage-transparent")
                     .padding(-11.0)
-//                Image("camera-gradient-transparent")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .padding(.trailing, 29.0)
-                    
-//                Image("photojournal-transparent")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-                // add collage image
                 Image("collage-transparent")
                     .padding(.top, -14.0)
             }
-            
-            
         }
     }
 }

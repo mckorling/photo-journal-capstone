@@ -3,27 +3,22 @@
 //  photojournal
 //
 //  Created by Megan Korling on 7/26/22.
-//
+// https://medium.nextlevelswift.com/build-an-app-like-lego-with-swiftui-tutorial-3-235af2bf0f88
+// https://medium.nextlevelswift.com/build-an-app-like-lego-with-swiftui-tutorial-2-2d01177e35c
 
 import SwiftUI
 
 struct ContentView: View {
-    // to access and save, need the context: as moc
-   // @Environment(\.managedObjectContext) var moc
-    //@FetchRequest(sortDescriptors: []) var entries: FetchedResults<Entry>
-    // make a new fetch request with no sorting, put it into entries that has type of FetchedResults<Entry>
-    // then we can use it like an arrayA
-    // some properties of Entry are optional
-    // when unpacking them, entry.title ?? "title" so that by default there is a string "title" if no title is entered.
     
     var body: some View {
-        // let gradient = LinearGradient(colors: [.pink, .mint], startPoint: .topLeading, endPoint: .bottomTrailing)
+        // Set four tab options with HomeView as default View when app is opened
         TabView {
             NavigationView {
                 HomeView()
+                    // Set title of selected View
                     .navigationTitle("Photo Journal")
             }
-            .navigationViewStyle(StackNavigationViewStyle())
+            .navigationViewStyle(StackNavigationViewStyle()) // Dismisses error logged in console
             .tabItem {
                 Image(systemName: "house.circle.fill")
                 Text("Home")

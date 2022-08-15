@@ -19,6 +19,7 @@ struct SingleEntryView: View {
                 .opacity(0.30)
                 .ignoresSafeArea()
             ScrollView {
+                // Display all properties of an Entry: title, location, date, 3 images, and the journal text
                 VStack {
                     Text(entry.title ?? "Title")
                         .font(.largeTitle)
@@ -26,16 +27,14 @@ struct SingleEntryView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 5.0)
                         .padding(.leading, 7.0)
-                    Text("\(entry.location ?? "Unknown"), \(entry.date!, style: .date)")
+                    Text("\(entry.location ?? "Unknown"), \(entry.date!, style: .date)") // Show date without time
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 15.0)
                         .padding(.leading, 7.0)
-//                    Text("latitude: \(entry.latitude) and longitude: \(entry.longitude)")
                     Image(uiImage: UIImage(data: entry.image1!) ?? UIImage())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(.all, 7.0)
-                       // .cornerRadius(8)
                     Spacer()
                     Image(uiImage: UIImage(data: entry.image2!) ?? UIImage())
                         .resizable()
@@ -56,6 +55,7 @@ struct SingleEntryView: View {
     }
 }
 
+// Wasn't able to set up preview to take a property Entry
 //struct SingleEntryView_Previews: PreviewProvider {
 //    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 //

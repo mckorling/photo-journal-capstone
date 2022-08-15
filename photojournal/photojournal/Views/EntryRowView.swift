@@ -12,12 +12,12 @@ struct EntryRowView: View {
     
     var body: some View {
         HStack {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading) { // Left hand side
                 Text(entry.location ?? "Location")
-                Text(entry.date!, style: .date)
+                Text(entry.date!, style: .date) // Don't show time with date
             }
             .padding(.trailing, 5.0)
-            Text(entry.title ?? "Title")
+            Text(entry.title ?? "Title") // Right hand side
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 

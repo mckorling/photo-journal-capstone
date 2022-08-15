@@ -3,24 +3,22 @@
 //  photojournal
 //
 //  Created by Megan Korling on 7/26/22.
-//
+//  Tutorial followed: https://www.youtube.com/watch?v=bvm3ZLmwOdU&t=1s
 
 import SwiftUI
 
 @main
 struct photojournalApp: App {
-    // make an instance of data controller and send it into swift environment
-    // once app launches, store in swiftui environ, so everywhere in app can use it
     @StateObject private var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                // put it into swiftui environ
                 .environment(\.managedObjectContext, dataController.container.viewContext)
-                //  1. def of entities and attributes are in data models
-                //  2. NSPersistentContainer- actual data being loaded and saved to device
-                //  3. managed object context: live versions of data. when data is loaded and changed it only exists in memory until it's stored on disc. viewContext lets us work with data in memory. It is quicker to do it this way. load once, modify, work with memory, then save when ready.
+                // 3 Parts of loading/creating/saving data:
+                //  1. def of entities and attributes are in data models (photojournalModels)
+                //  2. NSPersistentContainer- actual data being loaded and saved to device (DataController)
+                //  3. Managed Object Context: live versions of data. viewContext works with data in memory bc when data is loaded and changed it only exists in memory until it's stored on disc.
         }
     }
 }
