@@ -13,6 +13,7 @@ struct AddEntryView: View {
     }
     @Environment(\.managedObjectContext) var moc
     let apiKey = "pk.1f00c7cb204323568c51950910d520e8"
+//    let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
     // use @State properties to store all data to make an entry (all model properties)
     // id will get created dynamically
     @State private var title = ""

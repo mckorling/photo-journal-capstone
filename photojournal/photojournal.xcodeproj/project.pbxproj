@@ -78,14 +78,8 @@
 				66E5FA912890A765007C6866 /* photojournalApp.swift */,
 				66E5FAAA28932BD2007C6866 /* photojournalModels.xcdatamodeld */,
 				66E5FA932890A765007C6866 /* ContentView.swift */,
-				66E5FAEF28984EAF007C6866 /* HomeView.swift */,
 				66E5FAB2289344B3007C6866 /* PhotoPickerModel.swift */,
 				66E5FAB4289344EB007C6866 /* PhotoPicker.swift */,
-				66E5FAB028933FA9007C6866 /* AddEntryView.swift */,
-				66E5FAB6289439CA007C6866 /* EntryListView.swift */,
-				66E5FAB828943F17007C6866 /* SingleEntryView.swift */,
-				66583A3D28A5767900E3241B /* MapView.swift */,
-				66E5FABA28943F29007C6866 /* EntryRowView.swift */,
 				66E5FAAD2893361C007C6866 /* DataController.swift */,
 				66E5FAAF28933EB1007C6866 /* Views */,
 				66E5FA952890A766007C6866 /* Assets.xcassets */,
@@ -105,6 +99,12 @@
 		66E5FAAF28933EB1007C6866 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				66E5FAEF28984EAF007C6866 /* HomeView.swift */,
+				66E5FAB6289439CA007C6866 /* EntryListView.swift */,
+				66E5FAB828943F17007C6866 /* SingleEntryView.swift */,
+				66583A3D28A5767900E3241B /* MapView.swift */,
+				66E5FABA28943F29007C6866 /* EntryRowView.swift */,
+				66E5FAB028933FA9007C6866 /* AddEntryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +199,7 @@
 /* Begin XCBuildConfiguration section */
 		66E5FA9A2890A766007C6866 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6664E44E28A1E956005C5F92 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -259,6 +260,7 @@
 		};
 		66E5FA9B2890A766007C6866 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6664E44E28A1E956005C5F92 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
