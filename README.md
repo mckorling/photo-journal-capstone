@@ -26,7 +26,7 @@ The single entry view can only be reached by the list view or map view. It displ
 Because this is not set up in Apple's App Store, please follow the steps below to install. All libraries are supported by Swift/SwiftUI so it should be quick and easy.
 
 1. Download Xcode
-2. Clone repo
+2. Clone this project onto your computer
 3. Open project in Xcode
 3. Connect your phone to Xcode simulator and run it. This should load the app on your phone. (As of Aug2022 this tutorial works: https://www.youtube.com/watch?v=Fo1A36RsoCI)
 4. Done!
