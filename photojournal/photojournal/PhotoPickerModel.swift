@@ -18,7 +18,7 @@ struct PhotoPickerModel: Identifiable {
     }
 
     // A List (and other types) need each item to be uniquely identifiable
-    // Tell the Model to conform to protocol: Identifiable
+    // Model to conform to protocol: Identifiable
     // Identifiable requires an id, can be any type
     var id: String
     var photo: UIImage? // Normal photos

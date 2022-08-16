@@ -47,7 +47,7 @@ struct AddEntryView: View {
     }
     
     // Explicitely set the value for each image property depending on how many the user selected (the count of mediaItems)
-    // To convert to Data type, jpegData method is better than pngData method
+    // jpegData method is better than pngData method, for camera images
     func setImages(entry: Entry) {
         if mediaItems.count == 3 {
             entry.image1 = mediaItems[0].jpegData(compressionQuality: 1.0)
@@ -78,10 +78,10 @@ struct AddEntryView: View {
     }
     
     // Call LocationIQ API to get the latitude and longitude of a location
-    // It will also set the entry's latitude and longitude properties to avoid issues with it being an aysnchronous call
+    // It will also set an entry's latitude and longitude properties to avoid issues with it being an aysnchronous call
     func fetchAPI(entry: Entry) async {
         // Provide query params directly into the url
-        // Set the limit to 1 to only get back 1 object in response body
+        // Set the limit to 1 to only get back 1 object in response body: [{}]
         let url = URL(string: "https://us1.locationiq.com/v1/search.php?key=\(String(describing: apiKey))&q=\(formatLocString(location: location))&format=json&limit=1")
         URLSession.shared.dataTask(with: url!) { data, response, error in
                 if let data = data {
@@ -200,7 +200,7 @@ struct AddEntryView: View {
                             Text("Save")
                                 .frame(maxWidth: .infinity, alignment: .center)
                         }
-                    } // End of button section
+                    } // End of save button section
                 }
                 .toolbar {
                     // Dismiss keyboard if done typing
